@@ -29,3 +29,15 @@ Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
 require __DIR__.'/auth.php';
+
+// Адмін роути - простий варіант
+Route::middleware(['web', 'auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Доступ заборонено. Потрібні права адміністратора.');
+        }
+        return view('admin.dashboard');
+    })->name('dashboard');
+    
+    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+});
