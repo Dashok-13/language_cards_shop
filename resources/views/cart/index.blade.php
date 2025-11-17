@@ -59,9 +59,14 @@
                                 Очистити кошик
                             </button>
                         </form>
-                        <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded transition duration-200">
-                            Оформити замовлення
-                        </button>
+
+                        <form action="{{ route('cart.checkout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded transition duration-200"
+                                    onclick="return confirm('Ви впевнені, що хочете оформити замовлення?')">
+                                Оформити замовлення
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

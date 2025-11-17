@@ -11,7 +11,6 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        // Перевірка адміна вручну для кожного методу
         $this->checkAdmin();
     }
 

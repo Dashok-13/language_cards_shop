@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Order;  
+use App\Models\OrderItem;
 
 class CartController extends Controller
 {
@@ -51,4 +53,35 @@ class CartController extends Controller
         session()->forget('cart');
         return redirect()->back()->with('success', 'Кошик очищено!');
     }
+public function checkout(Request $request)
+{
+    $cart = session()->get('cart', []);
+    
+    if (empty($cart)) {
+        return redirect()->route('cart.index')->with('error', 'Кошик порожній!');
+    }
+
+    // Створюємо нове замовлення
+    $order = Order::create([
+        'user_id' => auth()->id(),
+        'total_amount' => array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart)),
+        'status' => 'pending',
+        'payment_status' => 'pending',
+    ]);
+
+    // Додаємо товари до замовлення
+    foreach ($cart as $id => $item) {
+        $order->items()->create([
+            'product_id' => $id,
+            'quantity' => $item['quantity'],
+            'price' => $item['price'],
+        ]);
+    }
+
+    // Очищаємо кошик
+    session()->forget('cart');
+
+    return redirect()->route('cart.index')
+        ->with('success', 'Замовлення #' . $order->id . ' оформлено! Дякуємо за покупку!');
+}
 }

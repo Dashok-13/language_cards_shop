@@ -16,4 +16,19 @@ class Product extends Model
         'level', 
         'card_count'
     ];
+     protected $casts = [
+        'price' => 'decimal:2',
+    ];
+ 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items')
+                    ->withPivot('quantity', 'price')
+                    ->withTimestamps();
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

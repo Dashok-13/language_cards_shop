@@ -1,8 +1,6 @@
 @extends('admin.layout')
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    <!-- Статистика -->
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center">
             <div class="p-3 rounded-full bg-blue-100 text-blue-600">
@@ -46,7 +44,6 @@
     </div>
 </div>
 
-<!-- Швидкі дії -->
 <div class="bg-white rounded-lg shadow">
     <div class="px-6 py-4 border-b border-gray-200">
         <h2 class="text-xl font-semibold text-gray-800">Швидкі дії</h2>

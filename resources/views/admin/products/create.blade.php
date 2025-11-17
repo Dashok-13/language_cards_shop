@@ -11,7 +11,6 @@
             @csrf
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Назва -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Назва *</label>
                     <input type="text" name="name" value="{{ old('name') }}" 
@@ -20,7 +19,6 @@
                     @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
 
-                <!-- Мова -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Мова *</label>
                     <input type="text" name="language" value="{{ old('language') }}" 
@@ -28,8 +26,7 @@
                            required>
                     @error('language') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
-
-                <!-- Рівень -->
+ 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Рівень *</label>
                     <select name="level" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
@@ -40,8 +37,7 @@
                     </select>
                     @error('level') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
-
-                <!-- Ціна -->
+ 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Ціна (₴) *</label>
                     <input type="number" step="0.01" name="price" value="{{ old('price') }}" 
@@ -49,8 +45,7 @@
                            required>
                     @error('price') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
-
-                <!-- Кількість карток -->
+ 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Кількість карток *</label>
                     <input type="number" name="card_count" value="{{ old('card_count') }}" 
@@ -58,8 +53,7 @@
                            required>
                     @error('card_count') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
-
-                <!-- Зображення -->
+ 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Зображення (шлях) *</label>
                     <input type="text" name="image" value="{{ old('image') }}" 
@@ -68,8 +62,7 @@
                     @error('image') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
             </div>
-
-            <!-- Опис -->
+ 
             <div class="mt-6">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Опис *</label>
                 <textarea name="description" rows="4" 
@@ -77,8 +70,7 @@
                           required>{{ old('description') }}</textarea>
                 @error('description') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
-
-            <!-- Кнопки -->
+ 
             <div class="mt-6 flex space-x-4">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition">
                     Створити картку
